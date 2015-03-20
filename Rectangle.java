@@ -4,6 +4,11 @@ import org.bytedeco.javacpp.annotation.*;
 @Platform(include="cpp/Rectangle.hpp")
 @Namespace("Geometry")
 public class Rectangle extends Polygon{
+
+    /** at runtime, the Loader.load() method automatically loads the native 
+    libraries from Java resources, which were placed in the right directory 
+    by the building process.
+    **/
     static { Loader.load(); }
     
     public Rectangle() { allocate(); }
@@ -13,12 +18,22 @@ public class Rectangle extends Polygon{
     public native int area();
 
     public static void main(String[] args) {
-        // Pointer objects allocated in Java get deallocated once they become unreachable,
-        // but C++ destructors can still be called in a timely fashion with Pointer.deallocate()
+        /** Pointer objects allocated in Java get deallocated once they become 
+	unreachable, but C++ destructors can still be called in a timely fashion
+	with Pointer.deallocate()
+	**/
         Rectangle r = new Rectangle();
         r.set_values(3, 4);
         
         System.out.println("RECTANGLE test:");
         System.out.println("area = " + r.area());
+        
+        /** Test inheritance of the overloaded '=' operator **/
+        Rectangle new_r = new Rectangle();
+        new_r.set_values(6, 8);
+        System.out.println("previous dimensions of r: width: " + r.get_width() + ", height: " + r.get_height());
+        r = new_r;
+        System.out.println("new dimensions of r: width: " + r.get_width() + ", height: " + r.get_height());
     }
+    
 }
