@@ -18,12 +18,13 @@ public class Polygon extends Pointer{
     /** overload the assignment operator **/
     public native @ByRef @Name("operator=") Polygon put(@Const @ByRef Polygon other);
 
-    /** to call the getter and setter functions **/
-    public native int get_width();
+    /** setter functions **/
+    public native @Name("width") void setWidth(int w);
+    public native @Name("height") void setHeight(int h);
     
-    public native int get_height();
-    
-    public native void set_values(int a, int b);
+    /** getter functions **/
+    public native @Name("width") int getWidth();
+    public native @Name("height") int getHeight();
     
     /** equivalents for the template functions **/
     public native @StdString String dimension_to_string(@Const @ByRef int dim);
@@ -36,12 +37,13 @@ public class Polygon extends Pointer{
 	with Pointer.deallocate()
 	**/
         Polygon p = new Polygon();
-        p.set_values(3, 4);
+        p.setWidth(3);
+        p.setHeight(4);
         
         System.out.println("POLYGON test:");
-        System.out.println("width = " + p.get_width() + ", height = " + p.get_height());
+        System.out.println("width = " + p.getWidth() + ", height = " + p.getHeight());
         
-        System.out.println("width = " + p.dimension_to_string(p.get_width()) + ", height = " + p.dimension_to_string(p.get_height()));
+        System.out.println("width = " + p.dimension_to_string(p.getWidth()) + ", height = " + p.dimension_to_string(p.getHeight()));
     }
     
 }

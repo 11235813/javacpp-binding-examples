@@ -23,17 +23,19 @@ public class Rectangle extends Polygon{
 	with Pointer.deallocate()
 	**/
         Rectangle r = new Rectangle();
-        r.set_values(3, 4);
+        r.setWidth(3);
+        r.setHeight(4);
         
         System.out.println("RECTANGLE test:");
         System.out.println("area = " + r.area());
         
         /** Test inheritance of the overloaded '=' operator **/
         Rectangle new_r = new Rectangle();
-        new_r.set_values(6, 8);
-        System.out.println("previous dimensions of r: width: " + r.get_width() + ", height: " + r.get_height());
+        new_r.setWidth(6);
+        new_r.setHeight(8);
+        System.out.println("previous dimensions of r: width: " + r.getWidth() + ", height: " + r.getHeight());
         r = new_r;
-        System.out.println("new dimensions of r: width: " + r.get_width() + ", height: " + r.get_height());
+        System.out.println("new dimensions of r: width: " + r.getWidth() + ", height: " + r.getHeight());
     }
     
 }
