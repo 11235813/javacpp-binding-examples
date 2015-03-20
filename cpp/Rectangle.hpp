@@ -23,7 +23,7 @@
 namespace Geometry {
     class Rectangle: public Polygon {
 	public:
-	    int area() {return this->width * this->height;}
+	    int area() {return width_ * height_;}
     };
 }
 

@@ -23,7 +23,7 @@
 namespace Geometry {
     class Triangle: public Polygon {
 	public:
-	    int area() {return this->width * this->height / 2;}
+	    int area() {return width_ * height_ / 2.0;}
     };
 }
 

@@ -25,28 +25,30 @@
 namespace Geometry {
     class Polygon {
 	protected:
-	    int width, height;
+	    int width_, height_;
 
 	public:
-        Polygon() {
-            width = 0;
-            height = 0;
-        }
-        Polygon & operator= (const Polygon & other) {
-            if (this != &other) {
-                this->width = other.get_width();
-                this->height = other.get_height();
-            }
-
-            return *this;
-        }
-	    int get_width() const {return this->width;}
-	    int get_height() const {return this->height;}
-	    void set_values(int a, int b) {
-    		this->width = a;
-	    	this->height = b;
+	    Polygon() {
+		width_ = 0;
+		height_ = 0;
 	    }
+	    Polygon & operator= (const Polygon & other) {
+		if (this != &other) {
+		    width_ = other.width();
+		    height_ = other.height();
+		}
 
+		return *this;
+	    }
+	    
+	    /** setters **/
+	    void width(int w) {width_ = w;}
+	    void height(int h) {height_ = h;}
+
+	    /** getters **/
+	    int width() const {return width_;}
+	    int height() const {return height_;}
+	    
 	    template <typename T> std::string dimension_to_string (const T &dim) {
 		std::ostringstream ss;
 		ss << dim;
