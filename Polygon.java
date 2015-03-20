@@ -16,12 +16,21 @@ public class Polygon extends Pointer{
     public native int get_height();
     
     public native void set_values(int a, int b);
+    
+    //equivalents for the template functions
+    public native @StdString String dimension_to_string(@Const @ByRef int dim);
+    public native @StdString String dimension_to_string(@Const @ByRef float dim);
+    public native @StdString String dimension_to_string(@Const @ByRef double dim);
 
     public static void main(String[] args) {
         // Pointer objects allocated in Java get deallocated once they become unreachable,
         // but C++ destructors can still be called in a timely fashion with Pointer.deallocate()
         Polygon p = new Polygon();
         p.set_values(3, 4);
+        
+        System.out.println("POLYGON test:");
         System.out.println("width = " + p.get_width() + ", height = " + p.get_height());
+        
+        System.out.println("width = " + p.dimension_to_string(p.get_width()) + ", height = " + p.dimension_to_string(p.get_height()));
     }
 }

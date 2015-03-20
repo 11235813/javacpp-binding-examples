@@ -19,8 +19,8 @@
 #ifndef POLYGON_HPP
 #define POLYGON_HPP
 
-//#include <sstream>
-//#include <string>
+#include <sstream>
+#include <string>
 
 namespace Geometry {
     class Polygon {
@@ -28,13 +28,17 @@ namespace Geometry {
 	    int width, height;
 
 	public:
-	    //const std::string& get_width();
 	    int get_width() {return this->width;}
-	    //const std::string& get_height();
 	    int get_height() {return this->height;}
 	    void set_values(int a, int b) {
 		this->width = a;
 		this->height = b;
+	    }
+	    
+	    template <typename T> std::string dimension_to_string (const T &dim) {
+		std::ostringstream ss;
+		ss << dim;
+		return ss.str();
 	    }
     };
 }

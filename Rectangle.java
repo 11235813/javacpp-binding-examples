@@ -17,6 +17,8 @@ public class Rectangle extends Polygon{
         // but C++ destructors can still be called in a timely fashion with Pointer.deallocate()
         Rectangle r = new Rectangle();
         r.set_values(3, 4);
+        
+        System.out.println("RECTANGLE test:");
         System.out.println("area = " + r.area());
     }
 }
