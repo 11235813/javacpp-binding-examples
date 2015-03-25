@@ -1,0 +1,76 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>de.gnode</groupId>
+	<version>1.0.0-SNAPSHOT</version>
+	<artifactId>javacpp-maven-example</artifactId>
+	<name>Simple JavaCPP example for geometrical figures</name>
+
+	<dependencies>
+		<dependency>
+			<artifactId>javacpp</artifactId>
+			<version>0.10</version>
+			<groupId>org.bytedeco</groupId>
+			<scope>system</scope>
+			<systemPath>${basedir}/../libs/javacpp.jar</systemPath>
+		</dependency>
+		<dependency>
+			<artifactId>junit</artifactId>
+			<groupId>junit</groupId>
+			<version>4.8.2</version>
+		</dependency>
+	</dependencies>
+
+  <build>
+    <plugins>
+	<plugin>
+	        <artifactId>maven-surefire-plugin</artifactId>
+	        <version>2.9</version>
+	        <configuration>
+			<forkMode>once</forkMode>
+			<environmentVariables>
+				<LD_LIBRARY_PATH>${basedir}/../libs</LD_LIBRARY_PATH>
+			</environmentVariables>
+			<argLine>-Djava.library.path=${basedir}/target/classes/lib</argLine>
+	        </configuration>
+	</plugin>
+      
+	<plugin>
+		<groupId>org.bytedeco</groupId>
+		<artifactId>javacpp</artifactId>
+	</plugin>
+      
+	<plugin>
+		<groupId>org.codehaus.mojo</groupId>
+		<artifactId>exec-maven-plugin</artifactId>
+		<version>1.1</version>
+		<executions>
+			<execution>
+				<id>build-jnilib</id>
+				<phase>process-classes</phase>
+				<goals>
+					<goal>exec</goal>
+				</goals>
+				<configuration>
+					<executable>java</executable>
+					<commandlineArgs>-jar ../libs/javacpp.jar -d ${project.build.outputDirectory}/lib/ -Xcompiler -L${basedir}/../libs -Xcompiler -I${basedir}/src/main/jni -classpath target/classes de.gnode.example.Polygon de.gnode.example.Rectangle</commandlineArgs>
+				</configuration>
+				</execution>
+			</executions>
+		  </plugin>
+	<plugin>
+		<artifactId>maven-jar-plugin</artifactId>
+	</plugin>
+	<plugin>
+		<artifactId>maven-dependency-plugin</artifactId>
+	</plugin>
+	<plugin>
+		<artifactId>maven-source-plugin</artifactId>
+	</plugin>
+	<plugin>
+		<artifactId>maven-javadoc-plugin</artifactId>
+	</plugin>
+    </plugins>
+  </build>
+</project>
+
