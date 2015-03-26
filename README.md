@@ -7,3 +7,9 @@ This repository contains two javacpp binding examples:
     ./build_run.sh
 
 Based on the JavaCPP tool: https://github.com/bytedeco/javacpp
+
+Useful examples can be found here: 
+
+   https://github.com/bytedeco/javacpp-presets
+   
+   https://github.com/Jotschi/javacpp-examples
